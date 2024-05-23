@@ -82,3 +82,42 @@ decimal		binary		hexadecimal
 -   0x503c
 =   0x00ae
 
+## 2.5
+
+int val = 0x87654321
+byte_pointer valp = (byte_pointer) &val;
+show_bytes(valp, 1);
+show_bytes(valp, 2);
+show_bytes(valp, 3);
+
+a. Little endian: 21		Big endian: 87
+b. Little endian: 21 43		big endian: 87 65
+c. little endian: 21 43 65	big endian: 87 65 43
+
+## 2.6
+
+a. 
+
+hex: 0x00 35 91 41	binary: 0000 0000 0011 0101 1001 0001 0100 0001
+hex: 0x4A564504		binary: 0100 1010 0101 0110 0100 0101 0000 0100
+
+b.
+
+binary: 
+binary: 00000000001101011001000101000001
+                   *********************
+binary:   01001010010101100100010100000100
+
+21 matching bits
+
+c. the first bit of the integer string, and the first 8 bits of the float string does not match.
+
+
+## 2.7
+
+const char s = "abcdef";
+show_bytes((byte_pointer) s, strlen(s));
+
+output = 61 62 63 64 65 66
+
+
