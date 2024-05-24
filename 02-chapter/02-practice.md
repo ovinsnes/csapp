@@ -120,4 +120,49 @@ show_bytes((byte_pointer) s, strlen(s));
 
 output = 61 62 63 64 65 66
 
+## 2.8
+
+a  = 01101001
+b  = 01010101
+
+~a = 10010110
+~b = 10101010
+
+a&b= 01000001
+a|b= 01111101
+a^b= 00111100
+
+## 2.9
+
+a.
+
+Complement of:
+
+black(000): 	111
+blue(001):	110
+green(010):	101
+cyan(011):	100
+red(100):	011
+magenta(101):	010
+yellow(110):	001
+white(111):	000
+
+b.
+
+blue | green:
+  001
+| 010
+= 011 	(cyan)
+
+yellow & cyan:
+  110
+& 011
+= 010	(green)
+
+red ^ magenta:
+  100
+^ 101
+= 001	(blue)
+
+## 2.10
 
