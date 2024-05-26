@@ -166,3 +166,36 @@ red ^ magenta:
 
 ## 2.10
 
+void inplace_swap(int *x, int *y) {
+	*y = *x ^ *y;
+	*x = *x ^ *y;
+	*y = *x ^ *y;
+}
+
+Start
+*x = a
+*y = b
+
+Step 1:
+*x = a		*y = a ^ b
+*x = a ^ (a^b)  *y = a^b
+*x = a ^ (a^b)  *y = (a^(a^b))^(a^b)
+
+## 2.11
+
+a.
+
+index first, and last both has value = array[(2k+1)/2] in the final iteration
+
+so, for array A = [1,2,3], k=1, the value is A[3/2] = 2
+
+b.
+
+for odd arrays the last call to inplace_swap uses the same parameter value for both *x and *y, resulting in the additive inverse a^a=0
+
+c.
+
+if we would terminate the loop before the last iteration this would not occur. first <= last ==> first < last
+
+
+
