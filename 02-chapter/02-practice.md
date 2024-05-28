@@ -198,4 +198,34 @@ c.
 if we would terminate the loop before the last iteration this would not occur. first <= last ==> first < last
 
 
+## 2.14
+
+ x = 0x66 = 0110 0110, y = 0x39 = 0011 1001
+~x = 	  = 1001 1001,~Y = 	= 1100 0110
+
+x&y
+  0110 0110
+& 0011 1001
+= 0010 0000 = 0x20
+
+x|y
+  0110 0110
+| 0011 1001
+= 0111 1111 = 0x7F
+
+~x|~y
+  1001 1001
+| 1100 0110
+= 1101 1111 = 0xDF
+
+x & !y
+  1001 1001
+& 0000 0000
+= 0000 0000 = 0x00
+
+x && y = 0x01
+x || y = 0x01
+!x || !y = 0x00
+x && ~y = 0x01
+
 
