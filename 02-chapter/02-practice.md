@@ -284,8 +284,98 @@ T2U_4(-2) = -2 + 2^4 = 14
 T2U_4(-1) = -1 + 2^4 = 15
 T2U_4(5) = 5
 
+## 2.21
+
+Expression			Type		Evaluation
+-2147483647-1 == 2147483648U	unsigned	1
+-2147483647-1 < 2147483647	signed		1
+-2147483647-1U < 2147483647	unsigned	0
+-2147483647-1 < -2147483647	signed		1
+-2147483647-1U < -2147483647	unsigned	0
+
+## 2.22
 
 
+## 2.23
+
+	w	fun1(w)	step1 | step2		fun2(w) step1 | step2
+0x00000076	0x76000000    |  00000076	0x76000000    | 0x00000076
+0x87654321	0x21000000    |0x00000021	0x21000000    | 0x00000021
+0x000000C9	0xC9000000    |0x000000C9	0xC9000000    | 0xffffffC9
+0xEDCBA987	0x87000000    |0x00000087	0x87000000    | 0xffffff87
+
+b.fun1 extracts the lower 8 bits, and since the preceding bits are all zeros, the value is unsigned, giving a range of 0-255
+
+fun2 also extracts the lower 8 bits, but because of sign extension the range of values is -128 -> 127 instead
+
+
+## 2.24
+
+u: 9 mod 2^3 = 1
+s: U2T_3(x mod 2^k)
+
+1011 - 011 - 0101	u: 11 mod 2^3 = 3, s: 
+1111 - 111 - 0001
+
+
+
+	Hex    |  Unsigned	|  Signed
+original trunc | original trunc | original trunc
+   0	   0   |    0	    0   |    0	     0
+   2	   2   |    2       2   |    2	     2
+   9	   1   |    9  	    1   |   -7	    -7
+   B	   3   |   11	    3   |   -5	    -5
+   F	   7   |   15	    7   |   -1	    -1
+
+We first use equation 2.9 to find the truncated unsigned value, and then we apply U2T_k on the result to find the two's-complement truncated value. 
+
+## 2.25
+
+The code encounters a memory error in line 7 because when we subtract 1 from an unsigned int of zero, it wraps around to the maximum value that an unsigned int can hold.
+
+The maximum value of an unsigned is twice as big as the maximum signed, leading int i to wrap around to its minimum value at some point. Since this will cause access of a negative index in the array, we get a array out of bounds error, or similar.
+
+We can correct the code by making length a signed int as well.
+
+## 2.28
+
+2^4 - 8 = 8
+2^4 - 5 = 11
+2^4 - 13 = 3
+2^4 - 15 = 1
+0101 -> 1011 -> B
+1000 -> 1000 -> 8
+1101 -> 0011 -> 3
+1111 -> 0001 -> 1
+
+
+       x	   |        -u 4 x
+Hex	Decimal		Decimal	Hex
+0	0		0	0
+5	5		-5	B
+8	8		-8	8
+D	13		-13	3
+F	15		-15	1
+
+# 2.29
+
+
+   x	   y	  x+y	  T_x+y	  case
+
+    -12	    -15	     -27       5   1
+[10100]	[10001] [100101] [00101] 
+
+     -8      -8      -16     -16   2   
+[11000]	[11000]	 [10000] [10000]
+
+     -9	      8	      -1      -1  
+[10111]	[01000]	 [11111] [11111]   2
+
+      2	      5	       7       7 
+[00010]	[00101]	 [00111] [00111]   3
+
+     12	      4	     -16     -16   4
+[01100]	[00100]	 [10000] [10000]
 
 
 
