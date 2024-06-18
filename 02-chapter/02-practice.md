@@ -379,4 +379,8 @@ F	15		-15	1
 
 
 
+# 2.31
+
+I laught at the code because in the case where x = 127, y = 1, and we're using signed char, when adding these two we are clearly producing a positive overflow. And the function should return a zero. Yet, the function evevaluates sum-x == y to true. Since -128-127 actually is 1, because it wraps around. What is strange is that the code seems to work, yet the solution in the book using abelian groups shows it should not.
+
 

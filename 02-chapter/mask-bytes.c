@@ -36,8 +36,6 @@ int least_sig_byte_changed(int x) {
     //& 1111 1111 0000 0000
     //= 0100 0011 0000 0000
     int msb = x & mask;
-    // 1111 1111 = 0xFF
-    int lsbComplement = ~least_sig_byte(msb);
     //  0100 0011 0000 0000
     //| 0000 0000 1111 1111
     //= 0100 0011 1111 1111
